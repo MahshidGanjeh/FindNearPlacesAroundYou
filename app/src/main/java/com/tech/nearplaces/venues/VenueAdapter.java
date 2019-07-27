@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.tech.nearplaces.R;
 import com.tech.nearplaces.data.model.Venue;
+import com.tech.nearplaces.databinding.VenueItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,9 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueViewHolder> {
     private List<Venue> mVenueList = new ArrayList<>();
     private Context mContext;
 
+    public VenueAdapter() {
+    }
+
     public VenueAdapter(List<Venue> mVenueList, Context context) {
         this.mVenueList = mVenueList;
         mContext = context;
@@ -25,9 +29,14 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueViewHolder> {
     @NonNull
     @Override
     public VenueViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        VenueItemBinding binding =
+                VenueItemBinding.inflate(
+                        LayoutInflater.from(viewGroup.getContext()),
+                        viewGroup,
+                        false
+                );
         return
-                new VenueViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.venue_item, viewGroup, false));
+                new VenueViewHolder(binding);
     }
 
     @Override

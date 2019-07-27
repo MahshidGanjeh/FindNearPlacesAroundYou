@@ -1,6 +1,7 @@
 package com.tech.nearplaces.venues;
 
 import android.content.Context;
+import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.tech.nearplaces.R;
+import com.tech.nearplaces.BR;
 import com.tech.nearplaces.data.model.Venue;
 
 public class VenueViewHolder extends RecyclerView.ViewHolder {
@@ -19,16 +20,31 @@ public class VenueViewHolder extends RecyclerView.ViewHolder {
     TextView mDistanceTextView;
     ImageView mIconImageView;
 
-    public VenueViewHolder(@NonNull View itemView) {
+    final ViewDataBinding binding;
+
+    public VenueViewHolder(ViewDataBinding binding) {
+        super(binding.getRoot());
+        this.binding = binding;
+    }
+
+    public void onBind(Venue obj, VenueItemViewModel viewModel) {
+        binding.setVariable(BR.obj, obj);
+        binding.setVariable(BR.viewModel, viewModel);
+        //obj.fetchImages();
+        binding.executePendingBindings();
+    }
+
+
+   /* public VenueViewHolder(@NonNull View itemView) {
         super(itemView);
         mNameTextView = itemView.findViewById(R.id.venue_name_tv);
         mAddressTextView = itemView.findViewById(R.id.venue_address_tv);
         mDistanceTextView = itemView.findViewById(R.id.venue_distance_tv);
         mIconImageView = itemView.findViewById(R.id.venue_icon_imgv);
-    }
+    }*/
 
 
-    public void onBind(Venue venue, Context context) {
+   /* public void onBind(Venue venue, Context context) {
         mNameTextView.setText(venue.getName());
         mAddressTextView.setText(venue.getLocation().getAddress());
         mDistanceTextView.setText(venue.getLocation().getDistance().toString() + " km");
@@ -39,5 +55,5 @@ public class VenueViewHolder extends RecyclerView.ViewHolder {
                 .load(iconPath)
                 .into(mIconImageView);
 
-    }
+    }*/
 }
