@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tech.nearplaces.BR;
 import com.tech.nearplaces.data.model.Venue;
+import com.tech.nearplaces.databinding.VenueItemBinding;
 
 public class VenueViewHolder extends RecyclerView.ViewHolder {
 
@@ -20,18 +21,20 @@ public class VenueViewHolder extends RecyclerView.ViewHolder {
     TextView mDistanceTextView;
     ImageView mIconImageView;
 
-    final ViewDataBinding binding;
+    private final ViewDataBinding mBinding;
+    private Venue mVenue;
 
-    public VenueViewHolder(ViewDataBinding binding) {
+    public VenueViewHolder(VenueItemBinding binding) {
         super(binding.getRoot());
-        this.binding = binding;
+        mBinding = binding;
     }
 
-    public void onBind(Venue obj, VenueItemViewModel viewModel) {
-        binding.setVariable(BR.obj, obj);
-        binding.setVariable(BR.viewModel, viewModel);
+    public void onBind(VenueItemViewModel viewModel, Venue v) {
+        //mBinding.viewmodel = viewModel;
+        mBinding.setVariable(BR.viewmodel, viewModel);
+        mBinding.setVariable(BR.venue, v);
         //obj.fetchImages();
-        binding.executePendingBindings();
+        // binding.executePendingBindings();
     }
 
 

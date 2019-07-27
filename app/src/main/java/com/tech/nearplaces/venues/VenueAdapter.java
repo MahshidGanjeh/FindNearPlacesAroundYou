@@ -24,6 +24,7 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueViewHolder> {
     public VenueAdapter(List<Venue> mVenueList, Context context) {
         this.mVenueList = mVenueList;
         mContext = context;
+
     }
 
     @NonNull
@@ -41,7 +42,8 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull VenueViewHolder venueViewHolder, int i) {
-        venueViewHolder.onBind(mVenueList.get(i), mContext);
+        VenueItemViewModel vm = new VenueItemViewModel();
+        venueViewHolder.onBind(vm, mVenueList.get(i));
     }
 
     @Override

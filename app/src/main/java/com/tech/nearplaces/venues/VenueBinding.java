@@ -9,10 +9,10 @@ import java.util.List;
 
 public class VenueBinding {
 
-    @BindingAdapter({"app:adapter", "app:data"})
-    public void bind(RecyclerView recyclerView, VenueAdapter adapter, List<Venue> list) {
-        recyclerView.setAdapter(adapter);
-
-    }
+//    @BindingAdapter({"app:adapter", "app:data"})
+//    public void bind(RecyclerView recyclerView, VenueAdapter adapter, List<Venue> list) {
+//        recyclerView.setAdapter(adapter);
+//
+//    }
 
 }
